@@ -32,7 +32,9 @@ A small philosophical difference I found between reality and script.<br>
 In reality we need only one single move to let the cards fall down and get mixed,<br>
 while in script (or math) we need to take every number one by one to put it somewhere else,<br>
 due to the missing gravity and wind in math that make the action moves instead of our hands.<br>
-Not easy to count those moves. However, it's just a simple example for fun.
+Not easy to count those wind-moves. The number of steps for mixing in script could be reduced more,<br>
+but in the end it's just a matter of showing that the number for sorting<br>
+cannot be smaller than the number for mixing.<br>
 <br><br>
 The script-code is not well-written or well-structured, because not in the focus here.<br>
 The focus are (the difference of) the amounts of action moves for ordering and disordering,<br>
