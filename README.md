@@ -8,7 +8,7 @@ No webserver needed for the html-page (only tested in Edge-browser).
 I am not a physician or a math-expert, but it is not that difficult to understand,<br>
 that building a house of cards, is much harder than destroying it.<br>
 Or the same with the famous rubik-cube,<br>
-which I still not figured out how to put those f***g colors back on their place.<br>
+which I still haven't figured out how to put those damn colors back in place.<br>
 That all finally seems to mean, that disorder spreads easier than order.
 <br><br>
 Just for fun I wanted to verify the theory by myself.<br>
