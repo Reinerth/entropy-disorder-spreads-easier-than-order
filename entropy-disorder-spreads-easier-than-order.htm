@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>disorder spreads easier than order</title>
+
+    <style>
+
+        body {
+            font-size: 12px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .myImg{
+            width: 730px;
+        }
+
+        .block{
+            width: 90%;
+            float: left;
+            margin-left: 24px;
+            margin-top: 24px;
+        }
+
+        .blockTitle, .nameOfSortingAlgorithm {
+            width: 230px;
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            padding: 5px;
+        }
+        
+        .blockContent, .amountOfMovesToOrder{
+            height: 20px;
+            border: 1px dotted silver;
+            line-break: anywhere;
+            line-height: 20px;
+            padding: 5px;
+        }
+
+        .spacer{
+            float: left;
+            position: relative;
+            width: 100%;
+            height: 30px;
+        }
+
+        #messageToTheUser {
+            float: left;
+            width: 100%;
+            height: 30px;
+            color: red;
+            font-weight: bold;
+        }
+
+        .containerInputAndbutton {
+            float: left;
+            width: 100%;
+            height: 30px;
+            margin-left: 24px;
+        }
+
+        #myInputAmountOfThings {
+            float: left;
+            width: 100px;
+            height: 26px;
+        }
+
+        .containerTitle{
+            float: left;
+            margin-left: 24px;
+            width: 100%;
+            height: 19px;
+            padding-top: 10px;
+        }
+
+        #graphicalItemsOrdered, #graphicalItemsDisordered, #graphicalItemsReOrdered {
+            float: left;
+            width: 100%;
+            height: 160px;
+            margin-left: 24px;
+        }
+
+        .oneThing {
+            float: left;
+            border: 1px solid green;
+            text-align: center;
+        }
+
+        #amountOfMovesToDisorder, #amountOfMovesSortedWithSelectionSort, #amountOfMovesToOrderTitleInsertionSort, #amountOfMovesToOrderTitleQuickSort, #amountOfMovesToOrderTitleBubbleSort, #amountOfMovesToOrderTitleMergeSort {
+            color: red;
+            font-weight: bold;
+        }
+
+
+        /* The coolest button in mankinds history ***********************************************/
+        /** online-tool for generating gradients: https://www.colorzilla.com/gradient-editor/ **/
+        .mySwitch {
+            width: 250px;
+            height: 30px;
+            border: 1px solid #333333;
+            line-height: 30px;
+            margin-left: 30px;
+            position: relative;
+            float: left;
+            font-weight: bold;
+            font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+            text-align: center;
+            text-shadow: 0 1px 0px #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            /* margin: 0; */
+            margin-bottom: 2px;
+            cursor: pointer;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            border-top-color: #aeafae;
+            border-bottom-color: #7c7e7c;
+            -webkit-box-shadow: inset 0px 1px 0px #fbfbfb, inset 1px 0px 0px #ededed, inset 0px -1px 0px #dfdfdf, inset -1px 0px 0px #ededed, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: inset 0px 1px 0px #fbfbfb, inset 1px 0px 0px #ededed, inset 0px -1px 0px #dfdfdf, inset -1px 0px 0px #ededed, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            box-shadow: inset 0px 1px 0px #fbfbfb, inset 1px 0px 0px #ededed, inset 0px -1px 0px #dfdfdf, inset -1px 0px 0px #ededed, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#bdbdbd');
+            background-image: -moz-linear-gradient(top, #f8f8f8, #bdbdbd);
+            background-image: -ms-linear-gradient(top, #f8f8f8, #bdbdbd);
+            background-image: -webkit-gradient(linear, center top, center bottom, from(#f8f8f8), to(#bdbdbd));
+            background-image: -webkit-linear-gradient(top, #f8f8f8, #bdbdbd);
+            background-image: -o-linear-gradient(top, #f8f8f8, #bdbdbd);
+            background-image: linear-gradient(top, #f8f8f8, #bdbdbd);
+        }
+        .mySwitch:hover {
+            -webkit-box-shadow: inset 0px 1px 0px #fcfcfc, inset 1px 0px 0px #f0f0f0, inset 0px -1px 0px #e4e4e4, inset -1px 0px 0px #f0f0f0, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: inset 0px 1px 0px #fcfcfc, inset 1px 0px 0px #f0f0f0, inset 0px -1px 0px #e4e4e4, inset -1px 0px 0px #f0f0f0, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            box-shadow: inset 0px 1px 0px #fcfcfc, inset 1px 0px 0px #f0f0f0, inset 0px -1px 0px #e4e4e4, inset -1px 0px 0px #f0f0f0, 0px 1px 0px rgba(0, 0, 0, 0.15);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#c9c9c9');
+            background-image: -moz-linear-gradient(top, #f8f8f8, #c9c9c9);
+            background-image: -ms-linear-gradient(top, #f8f8f8, #c9c9c9);
+            background-image: -webkit-gradient(linear, center top, center bottom, from(#f8f8f8), to(#c9c9c9));
+            background-image: -webkit-linear-gradient(top, #f8f8f8, #c9c9c9);
+            background-image: -o-linear-gradient(top, #f8f8f8, #c9c9c9);
+            background-image: linear-gradient(top, #f8f8f8, #c9c9c9);
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+<br><br>
+Things that probably make us go hmm. <br><br>
+<u>My example here is about the universal problem of entropy.</u> <br><br><br>
+
+I am not a physician or a math-expert, but it is not that difficult to understand,<br> 
+that building a house of cards, is much harder than destroying it.<br> 
+Or the same with the famous rubik-cube, <br>
+which I still not figured out how to put those f***g colors back on their place.<br>
+That all finally seems to mean, that disorder spreads easier than order.<br><br><br>
+
+
+Just for fun I wanted to verify the theory by myself. <br>
+I tried to find a way, to order things, <br>
+with less action moves, than I needed to disorder them. <br><br><br>
+
+For that I made a list of numbers which initially are sorted. <br>
+Than I mix them and count the moves I needed for that.<br>
+While a move is one step in a loop (of course on binary level would be much more).<br>
+Finally I applied different ways of sorting the numbers back. <br>
+And again I counted the moves that I needed to put them back to the place they belong.<br><br><br>
+
+In reality that would be something like:<br>
+I have an amount of number-cards in my hand (sorted)<br>
+and I throw them on the floor. <br>
+Then I pick them up one by one into my hand, <br>
+and place them to those already in my hand, to the place where they belong. <br>
+And count the moves for doing that. <br><br><br>
+
+
+A small philosophical difference I found between reality and script. <br>
+In reality we need only one single move to let the cards fall down and get mixed, <br>
+while in script (or math) we need to take every number one by one to put it somewhere else,<br>
+due to the missing gravity and wind in math that make the action moves instead of our hands. <br>
+Not easy to count those moves. However, it's just a simple example for fun. <br><br><br>
+
+
+The script-code is not well-written or well-structured, because not in the focus here. <br>
+The focus are (the difference of) the amounts of action moves for ordering and disordering, <br>
+displayed in red in the output.<br>
+
+
+
+    <div class="block"><img class="myImg" src="07.png"></div>
+
+    <br><br><br><br>
+
+    <div id="messageToTheUser"></div>
+    <div class="containerInputAndbutton">
+        <div class="blockTitle"><b>Amount of things:</b></div> 
+        <input type="text" id="myInputAmountOfThings" value="30">
+        <div id="throwTheThingsOnTheFloor" class="mySwitch">Throw the things on the floor</div>
+    </div>
+
+
+    <br><br><br><br>
+
+    <div class="block">
+        <div class="blockTitle"><b>List of ordered numbers:</b>&nbsp;&nbsp;</div>
+        <div class="blockContent" id="orderedNumbersDOM">0</div>
+
+        <div class="blockTitle"><b>List of disordered numbers:&nbsp;&nbsp;</b></div>
+        <div class="blockContent" id="disorderedNumbersDOM">0</div>
+
+        <div class="blockTitle"><b>Amount of moves to disorder:</b></div>
+        <div class="blockContent" id="amountOfMovesToDisorder">0</div>
+    </div>
+
+
+    <div class="spacer"></div>
+    <div class="containerTitle">graphical vizualisation for <u><b>ordered</b></u> items (only if less than 51)</div>
+    <div id="graphicalItemsOrdered"></div>
+    <div class="containerTitle">graphical vizualisation for <u><b>dis</b></u>ordered items (only if less than 51)</div>
+    <div id="graphicalItemsDisordered"></div>
+    <div class="spacer"></div>
+
+
+    <div class="block">
+        <div class="nameOfSortingAlgorithm"><b>Sorting algorithm</b></div>
+        <div class="amountOfMovesToOrder"><b>Amount of action-moves needed to re-order</b></div>
+
+        <div class="nameOfSortingAlgorithm">Selection Sort</div>
+        <div class="amountOfMovesToOrder" id="amountOfMovesSortedWithSelectionSort">0</div>
+
+        <div class="nameOfSortingAlgorithm">Insertion Sort</div>
+        <div class="amountOfMovesToOrder" id="amountOfMovesToOrderTitleInsertionSort">0</div>
+
+        <div class="nameOfSortingAlgorithm">Quick Sort</div>
+        <div class="amountOfMovesToOrder" id="amountOfMovesToOrderTitleQuickSort">0</div>
+
+        <div class="nameOfSortingAlgorithm">Bubble Sort</div>
+        <div class="amountOfMovesToOrder" id="amountOfMovesToOrderTitleBubbleSort">0</div>
+
+        <div class="nameOfSortingAlgorithm">Merge Sort</div>
+        <div class="amountOfMovesToOrder" id="amountOfMovesToOrderTitleMergeSort">0</div>
+
+    </div>
+
+
+    <div class="spacer"></div>
+    <div class="containerTitle">graphical vizualisation for <u><b>RE</b></u>-ordered items (only if less than 51)</div>
+    <div id="graphicalItemsReOrdered"></div>
+
+
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+    <br><br><br><br>
+
+
+
+    <script>
+
+
+        /************************************************************************
+         * got the different sorting-algorithms from the page geeks-for-geeks.com
+         * and some of them were generated from Microsofts-Copilot (Bing). 
+         ************************************************************************/
+
+        let orderedNumbers = [];
+        let disorderedNumbers0 = [];
+        let disorderedNumbers1 = [];
+        let disorderedNumbers2 = [];
+        let disorderedNumbers3 = [];
+        let disorderedNumbers4 = [];
+        let disorderedNumbers5 = [];
+
+
+
+        // Clicking on the button "Throw things on the floor"
+        document.getElementById("throwTheThingsOnTheFloor").onclick = function(){
+
+            // reset all arrays ...funktioniert aber nicht
+            orderedNumbers = [];
+            disorderedNumbers0 = [];
+            disorderedNumbers1 = [];
+            disorderedNumbers2 = [];
+            disorderedNumbers3 = [];
+            disorderedNumbers4 = [];
+            disorderedNumbers5 = [];
+
+            amountOfMovesToOrderWithMergeSort = 0;
+            amountOfMovesToOrderWithQuickSort = 0;
+
+            // reset DOM 
+            document.getElementById("orderedNumbersDOM").innerText = "0";
+            document.getElementById("amountOfMovesToOrderTitleMergeSort").innerText = "0";
+            document.getElementById("amountOfMovesToOrderTitleBubbleSort").innerText = "0";
+            document.getElementById("amountOfMovesToOrderTitleQuickSort").innerText = "0";
+            document.getElementById("amountOfMovesToOrderTitleInsertionSort").innerText = "0";
+            document.getElementById("amountOfMovesSortedWithSelectionSort").innerText = "0";
+            document.getElementById("disorderedNumbersDOM").innerText = "0";
+            document.getElementById("amountOfMovesToDisorder").innerText = "0";
+
+
+            let amountOfThingsToOrder = document.getElementById("myInputAmountOfThings").value;
+            let messageToTheUser = document.getElementById("messageToTheUser");
+
+            if (amountOfThingsToOrder >=500){
+                messageToTheUser.innerText = "Keep calm, lay back, take a deep breath and try to find back to the roots.";
+                return;
+            } else {
+                messageToTheUser.innerText = "";
+            }
+
+            if (amountOfThingsToOrder != "" && amountOfThingsToOrder != 0 && typeof amountOfThingsToOrder != "undefined" && typeof amountOfThingsToOrder != null ){
+                amountOfThingsToOrder = document.getElementById("myInputAmountOfThings").value;
+            } else {
+                amountOfThingsToOrder = 30;
+            }
+
+            fillInitialContainerWithThings(amountOfThingsToOrder);
+            amountOfThingsToOrder = 0;
+        };
+
+
+
+
+
+
+
+        /* create a graphical container for a thing (a number) ***************************************************/
+
+        let makeGraphicalItem = function(myContainerFortheThing, mySize){
+
+            let myThing = document.createElement("div");
+
+            myThing.className = "oneThing";
+            // myThing.style.width = "30px";
+            myThing.style.width = "20px";;
+            myThing.style.height = mySize * 3 + 3 + "px";
+            // myThing.style.fontSize = mySize + "px";
+            myThing.style.fontSize = "12px";
+            myThing.innerText = mySize;
+
+
+            myContainerFortheThing.appendChild(myThing);
+        };
+
+
+
+
+
+
+
+        /* Selection Sort algorithm ***********************************************/
+        let selectionSort = function(disorderedNumbers1) {
+
+            let amountOfMovesToOrderWithSelectionSort = 0;
+            let n = disorderedNumbers1.length;
+
+            for (let i = 0; i < n - 1; i++) {
+
+                let minIndex = i;
+
+                amountOfMovesToOrderWithSelectionSort++; // increase amount of moves
+
+                for (let j = i + 1; j < n; j++) {
+
+                    amountOfMovesToOrderWithSelectionSort++; // increase amount of moves
+
+                    if (disorderedNumbers1[j] < disorderedNumbers1[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+
+                if (minIndex !== i) {
+                    // Swap the elements
+                    let temp = disorderedNumbers1[i];
+                    disorderedNumbers1[i] = disorderedNumbers1[minIndex];
+                    disorderedNumbers1[minIndex] = temp;
+                }
+            }
+
+
+            // Only in tis sorting algorithm we display them again in DOM for a more intuitive understanding for the user
+            let myContainerFortheReorderedThings = document.getElementById("graphicalItemsReOrdered");
+            myContainerFortheReorderedThings.innerHTML = ""; // reset the container for the new throw
+
+            if (disorderedNumbers1.length <= 50){ // too many do not fit on the screen an distort the layout 
+                for (let oneReOrderedThing=0; oneReOrderedThing<disorderedNumbers1.length; oneReOrderedThing++){
+                    makeGraphicalItem(myContainerFortheReorderedThings, disorderedNumbers1[oneReOrderedThing]);
+                }
+            }
+
+            // Put the amount of action moves to disorder the numbers to DOM
+            document.getElementById("amountOfMovesSortedWithSelectionSort").innerText = amountOfMovesToOrderWithSelectionSort;
+
+            return disorderedNumbers1;
+        };
+
+
+
+
+
+
+
+        /* Insertion Sort algorithm *****************************************************/
+        let insertionSort = function(disorderedNumbers2) {
+
+            let amountOfMovesToOrderWithInsertionSort = 0;
+            let n = disorderedNumbers2.length;
+
+            for (let i = 1; i < n; i++) {
+
+                let key = disorderedNumbers2[i];
+                let j = i - 1;
+
+                amountOfMovesToOrderWithInsertionSort++; // increase amount of moves
+
+                while (j >= 0 && disorderedNumbers2[j] > key) {
+
+                    amountOfMovesToOrderWithInsertionSort++; // increase amount of moves
+
+                    disorderedNumbers2[j + 1] = disorderedNumbers2[j];
+                    j--;
+                }
+
+                disorderedNumbers2[j + 1] = key;
+            }
+
+            // Put the amount of action moves to disorder the numbers to DOM
+            document.getElementById("amountOfMovesToOrderTitleInsertionSort").innerText = amountOfMovesToOrderWithInsertionSort;
+
+            return disorderedNumbers2;
+        }
+
+
+
+        /* Quick Sort algorithm ***********************************************/
+
+        // Needs to be outside of the function because the function calls itself recursive
+        let amountOfMovesToOrderWithQuickSort = 0;
+
+        let quickSort = function(disorderedNumbers3) {
+
+
+            if (disorderedNumbers3.length <= 1) {
+                amountOfMovesToOrderWithQuickSort++
+                return disorderedNumbers3;
+            }
+
+            const pivot = disorderedNumbers3[disorderedNumbers3.length - 1];
+            const left = [];
+            const right = [];
+
+            for (let i = 0; i < disorderedNumbers3.length - 1; i++) {
+
+                amountOfMovesToOrderWithQuickSort++;
+
+                if (disorderedNumbers3[i] < pivot) {
+                    left.push(disorderedNumbers3[i]);
+                } else {
+                    right.push(disorderedNumbers3[i]);
+                }
+            }
+
+
+            // Put the amount of action moves to disorder the numbers to DOM
+            document.getElementById("amountOfMovesToOrderTitleQuickSort").innerText = amountOfMovesToOrderWithQuickSort;
+
+            return [...quickSort(left), pivot, ...quickSort(right)];
+        }
+
+
+
+
+
+
+
+
+        /* Bubble Sort Sort algorithm ***********************************************/
+
+        let bubbleSort = function(disorderedNumbers4) {
+
+            let n = disorderedNumbers4.length;
+            let amountOfMovesToOrderWithBubbleSort = 0;
+            let swapped = false;
+
+            for(let i = 0;i < n; i++){
+
+                amountOfMovesToOrderWithBubbleSort++;
+                swapped = false;
+
+                for(let j = 0 ; j < n - i -1; j++){
+
+                    amountOfMovesToOrderWithBubbleSort++;
+
+                    if( disorderedNumbers4[j] > disorderedNumbers4[j+1]){
+                        [disorderedNumbers4[j], disorderedNumbers4[j+1]] = [disorderedNumbers4[j+1], disorderedNumbers4[j]];
+                        swapped = true;
+                    }
+                }
+
+                if( swapped === false) break;
+            }
+
+
+            // Put the amount of action moves to disorder the numbers to DOM
+            document.getElementById("amountOfMovesToOrderTitleBubbleSort").innerText = amountOfMovesToOrderWithBubbleSort;
+
+            return disorderedNumbers4;
+        }
+
+
+
+
+
+        /* Merge Sort Sort algorithm ***********************************************/
+
+        // Needs to be outside of the function because the function calls itself recursive
+        let amountOfMovesToOrderWithMergeSort = 0;
+
+        let mergeSort = function(disorderedNumbers5) {
+
+            amountOfMovesToOrderWithMergeSort++;
+
+            if (disorderedNumbers5.length <= 1) {
+                return disorderedNumbers5;
+            }
+
+            const mid = Math.floor(disorderedNumbers5.length / 2);
+            const left = mergeSort(disorderedNumbers5.slice(0, mid));
+            const right = mergeSort(disorderedNumbers5.slice(mid));
+
+            return merge(left, right);
+        };
+
+        let merge = function(left, right) {
+
+            let result = [];
+            let i = 0;
+            let j = 0;
+
+            while (i < left.length && j < right.length) {
+
+                amountOfMovesToOrderWithMergeSort++;
+
+                if (left[i] < right[j]) {
+                    result.push(left[i]);
+                    i++;
+                } else {
+                    result.push(right[j]);
+                    j++;
+                }
+            }
+
+            // Put the amount of action moves to disorder the numbers to DOM
+            document.getElementById("amountOfMovesToOrderTitleMergeSort").innerText = amountOfMovesToOrderWithMergeSort;
+
+            return result.concat(left.slice(i), right.slice(j));
+        };
+
+
+        /* Disorder numbers in list *******************************************************************/
+
+        // Check if amount of things are even 
+        let isEven = function(myNumber){
+            return myNumber % 2 === 0;
+        };
+
+        let disorderNumbers = function(orderedNumbers){
+
+            let amountOfMovestoDisorder = 0;
+
+            // We can half the amount of loops, 
+            // because in every loop we swap two numbers. 
+            // For that we need to find out if the length is even,
+            // and if not still take the half of the amount minus one 
+            // and add the uneven to the needed amount of loops.
+            // The "action moves" could get lowered with this idea.
+            // Still in reality we would need only one move to through 
+            // the numbers on the floor,
+            // doesnt matter if the were 50 or 100.
+            // But in math there is no magic, 
+            // so we go take the long way. 
+            let amountOfNeededLoopes = orderedNumbers.length;
+
+            if (isEven(amountOfNeededLoopes) == true){
+                amountOfNeededLoopes = amountOfNeededLoopes/2;
+            } else {
+                amountOfNeededLoopes = ((amountOfNeededLoopes-1)/2)+1;
+            }
+
+            for (let oneNumber=0; oneNumber<amountOfNeededLoopes; oneNumber++){
+
+                amountOfMovestoDisorder++; 
+
+                // pick randomly a number from the list of sorted numbers 
+                let indexOfFirstRandomNumer = Math.floor(Math.random() * orderedNumbers.length);
+                let myRandomNumber1 = orderedNumbers[indexOfFirstRandomNumer];
+
+                // pick randomly a second number from the list of sorted numbers 
+                let indexOfSecondRandomNumer = Math.floor(Math.random() * orderedNumbers.length);
+                let myRandomNumber2 = orderedNumbers[indexOfSecondRandomNumer];
+
+                // switch/swap the places of the both numbers in list
+                orderedNumbers[indexOfFirstRandomNumer] = myRandomNumber2 
+                orderedNumbers[indexOfSecondRandomNumer] = myRandomNumber1 
+            }
+
+            // Put the disordered nubers to DOM
+            document.getElementById("disorderedNumbersDOM").innerText = orderedNumbers;
+            // Put the amount of moves to disorder the nubers to DOM
+            document.getElementById("amountOfMovesToDisorder").innerText = amountOfMovestoDisorder;
+
+
+            let myContainerFortheThing = document.getElementById("graphicalItemsDisordered");
+            myContainerFortheThing.innerHTML = ""; // reset the container for the new throw
+
+            if (orderedNumbers.length <= 50){ // too many do not fit on the screen an distort the layout 
+                for (let oneDisorderedThing=0; oneDisorderedThing<orderedNumbers.length; oneDisorderedThing++){
+                    makeGraphicalItem(myContainerFortheThing, orderedNumbers[oneDisorderedThing]);
+                }
+            }
+        };
+
+
+
+
+
+
+        /* fill initial container (list) with things (numbers) *****************************************************/
+
+        let fillInitialContainerWithThings = function(amountOfThingsToOrder){
+
+            let myContainerFortheThing = document.getElementById("graphicalItemsOrdered");
+            myContainerFortheThing.innerHTML = ""; // reset the container for the new throw
+
+            for (let oneThing=0; oneThing<amountOfThingsToOrder; oneThing++){
+
+                orderedNumbers.push(oneThing); // put one thing after another to the container
+
+                if (amountOfThingsToOrder <= 50){ // too many do not fit on the screen an distort the layout 
+                    // visualisation of the things
+                    makeGraphicalItem(myContainerFortheThing, oneThing);
+                }
+
+
+                if(oneThing == amountOfThingsToOrder-1){ // ready, container is filled up
+
+                    // put the ordered nubers to DOM 
+                    document.getElementById("orderedNumbersDOM").innerText = orderedNumbers;
+
+                    // and throw them then on the floor
+                    disorderNumbers(orderedNumbers);
+
+                    // ugly workaround fo duplicatg the lists
+                    for (let oneThingily=0; oneThingily<orderedNumbers.length; oneThingily++){
+
+                        disorderedNumbers0.push(orderedNumbers[oneThingily]);
+                        disorderedNumbers1.push(orderedNumbers[oneThingily]);
+                        disorderedNumbers2.push(orderedNumbers[oneThingily]);
+                        disorderedNumbers3.push(orderedNumbers[oneThingily]);
+                        disorderedNumbers4.push(orderedNumbers[oneThingily]);
+                        disorderedNumbers5.push(orderedNumbers[oneThingily]);
+
+                        if(oneThingily == orderedNumbers.length-1){ // ready, containers are filled up
+
+                            // now re-order them again
+                            selectionSort(disorderedNumbers1);
+                            insertionSort(disorderedNumbers2);
+                            quickSort(disorderedNumbers3);
+                            bubbleSort(disorderedNumbers4);
+                            mergeSort(disorderedNumbers5); 
+                        }
+                    }
+                }
+            }
+        };
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
