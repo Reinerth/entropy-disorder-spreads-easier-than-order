@@ -1,4 +1,4 @@
-# My example here is about the universal problem of entropy.<br>
+# Example about the universal problem of entropy.<br>
 No webserver needed for the html-page (only tested in Edge-browser).
 <br><br>
 Things that probably make us hmm. <br><br>
